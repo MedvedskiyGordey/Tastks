@@ -9,8 +9,7 @@ namespace UnitTestBinary
     {
         public void Test(int a, int b, int nod)
         {
-            NOD res = new NOD(a, b);
-            int ans = res.BinaryEuclid(a, b);
+            int ans = NOD.BinaryEuclid(a, b);
             Assert.AreEqual(nod, ans);
         }
 

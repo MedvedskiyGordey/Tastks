@@ -3,32 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace Task1
 {
     public class NOD
     {
-        public int number1, number2;
-
-        /// <summary>
-        /// Конструктор класса
-        /// </summary>
-        /// <param name="number1">первое число</param>
-        /// <param name="number2">второе число</param>
-        public NOD(int number1, int number2)
-        {
-            this.number1 = number1;
-            this.number2 = number2;
-        }
-
         /// <summary>
         /// Алгоритм Евклида(2 числа)
         /// </summary>
         /// <param name="number1">первое число</param>
         /// <param name="number2">второе число</param>
         /// <returns></returns>
-        public int EuclidAlg(int number1, int number2)
+        public static int EuclidAlg(int number1, int number2)
         {
+            Stopwatch swatch = new Stopwatch();
+
+            swatch.Start();
+
             int nod;
 
             while ((number1 != 0) && (number2 != 0))
@@ -41,18 +33,31 @@ namespace Task1
 
             nod = Math.Max(number1, number2);
 
+            swatch.Stop();
+            TimeSpan time = swatch.Elapsed;
+
             return nod;
         }
 
-        public int EuclidAlg(int number1, int number2, int number3)
+        //public static int EuclidAlg(int number1, int number2, int number3)
+        //{
+        //    int nod = Math.Min(number1, Math.Min(number2, number3));
+        //    bool end = true;
+        //    while (nod > 1 || end == false)
+        //    {
+        //        if (number1 % nod == 0 && number2 % nod == 0 && number3 % nod == 0) end = false;
+        //        nod--;
+        //    }
+        //    return nod;
+        //}
+
+        public static int EuclidAlg(int[] array)
         {
-            int nod = Math.Min(number1, Math.Min(number2, number3));
-            bool end = true;
-            while (nod > 1 || end == false)
-            {
-                if (number1 % nod == 0 && number2 % nod == 0 && number3 % nod == 0) end = false;
-                nod--;
-            }
+            int nod = EuclidAlg(array[0], array[1]);
+
+            for (int i = 2; i < array.Length; i++)
+                nod = EuclidAlg(nod, array[i]);
+
             return nod;
         }
 
@@ -62,7 +67,7 @@ namespace Task1
         /// <param name="number1">первое число</param>
         /// <param name="number2">второе число</param>
         /// <returns></returns>
-        public int BinaryEuclid(int number1, int number2)
+        public static int BinaryEuclid(int number1, int number2)
         {
             if (number1 == number2 || number1 == 0)
                 return number2;

@@ -9,9 +9,14 @@ namespace UnitTest1
     {
         public void Test(int a, int b, int nod)
         {
-            NOD res = new NOD(a, b);
+            int ans = NOD.EuclidAlg(a, b);
 
-            int ans = res.EuclidAlg(a, b);
+            Assert.AreEqual(nod, ans);
+        }
+
+        public void TestOverloading(int[] array, int nod)
+        {
+            int ans = NOD.EuclidAlg(array);
 
             Assert.AreEqual(nod, ans);
         }
@@ -32,6 +37,30 @@ namespace UnitTest1
             int b = 223744;
             int nod = 19;
             Test(a, b, nod);
+        }
+
+        [TestMethod]
+        public void TestOverloadingMethod1()
+        {
+            int[] array = { 585, 81, 189};
+            int nod = 9;
+            TestOverloading(array, nod);
+        }
+
+        [TestMethod]
+        public void TestOverloadingMethod2()
+        {
+            int[] array = { 78, 294, 570, 36 };
+            int nod = 6;
+            TestOverloading(array, nod);
+        }
+
+        [TestMethod]
+        public void TestOverloadingMethod3()
+        {
+            int[] array = { 78, 294, 570, 36, 156 };
+            int nod = 6;
+            TestOverloading(array, nod);
         }
     }
 }
