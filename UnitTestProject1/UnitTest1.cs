@@ -7,17 +7,9 @@ namespace UnitTest1
     [TestClass]
     public class UnitTest1
     {
-        public void Test(int a, int b, int nod)
+        public void TestBinary(int a, int b, int nod)
         {
-            int ans = NOD.EuclidAlg(a, b);
-
-            Assert.AreEqual(nod, ans);
-        }
-
-        public void TestOverloading(int[] array, int nod)
-        {
-            int ans = NOD.EuclidAlg(array);
-
+            int ans = NOD.BinaryEuclid(a, b);
             Assert.AreEqual(nod, ans);
         }
 
@@ -27,7 +19,9 @@ namespace UnitTest1
             int a = 322328;
             int b = 122120;
             int nod = 344;
-            Test(a, b, nod);
+            int ans = NOD.EuclidAlg(a, b);
+
+            Assert.AreEqual(nod, ans);
         }
 
         [TestMethod]
@@ -36,31 +30,66 @@ namespace UnitTest1
             int a = 300181;
             int b = 223744;
             int nod = 19;
-            Test(a, b, nod);
+            int ans = NOD.EuclidAlg(a, b);
+
+            Assert.AreEqual(nod, ans);
         }
 
         [TestMethod]
-        public void TestOverloadingMethod1()
+        public void TestMethod3()
         {
-            int[] array = { 585, 81, 189};
+            int a = 585;
+            int b = 81;
+            int c = 189;
             int nod = 9;
-            TestOverloading(array, nod);
+            int ans = NOD.EuclidAlg(a, b, c);
+
+            Assert.AreEqual(nod, ans);
         }
 
         [TestMethod]
-        public void TestOverloadingMethod2()
+        public void TestMethod4()
         {
-            int[] array = { 78, 294, 570, 36 };
+            int a = 78;
+            int b = 294;
+            int c = 570;
+            int d = 36;
             int nod = 6;
-            TestOverloading(array, nod);
+            int ans = NOD.EuclidAlg(a, b, c, d);
+
+            Assert.AreEqual(nod, ans);
         }
 
         [TestMethod]
-        public void TestOverloadingMethod3()
+        public void TestMethod5()
         {
-            int[] array = { 78, 294, 570, 36, 156 };
+            int a = 78;
+            int b = 294;
+            int c = 570;
+            int d = 36;
+            int e = 156;
             int nod = 6;
-            TestOverloading(array, nod);
+            int ans = NOD.EuclidAlg(a, b, c, d, e);
+
+            Assert.AreEqual(nod, ans);
+        }
+
+        [TestMethod]
+        public void TestMethodBinary1()
+        {
+            int a = 322328;
+            int b = 122120;
+            int nod = 344;
+            TestBinary(a, b, nod);
+        }
+
+        [TestMethod]
+        public void TestMethodBinary2()
+        {
+            int a = 300181;
+            int b = 223744;
+            int nod = 19;
+            TestBinary(a, b, nod);
         }
     }
 }

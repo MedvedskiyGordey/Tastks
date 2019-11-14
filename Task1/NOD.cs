@@ -17,10 +17,6 @@ namespace Task1
         /// <returns></returns>
         public static int EuclidAlg(int number1, int number2)
         {
-            Stopwatch swatch = new Stopwatch();
-
-            swatch.Start();
-
             int nod;
 
             while ((number1 != 0) && (number2 != 0))
@@ -33,26 +29,82 @@ namespace Task1
 
             nod = Math.Max(number1, number2);
 
+            return nod;
+        }
+
+        /// <summary>
+        /// Алгоритм Евклида(2 числа)
+        /// </summary>
+        /// <param name="number1">первое число</param>
+        /// <param name="number2">второе число</param>
+        /// <param name="time">Время на выполнение метода</param>
+        /// <returns></returns>
+        public static int EuclidAlg(int number1, int number2, out double time)
+        {
+            Stopwatch swatch = new Stopwatch();
+
+            swatch.Start();
+
+            int nod = EuclidAlg(number1, number2);
+
             swatch.Stop();
-            TimeSpan time = swatch.Elapsed;
+            time = swatch.Elapsed.TotalMilliseconds;
 
             return nod;
         }
 
-        //public static int EuclidAlg(int number1, int number2, int number3)
-        //{
-        //    int nod = Math.Min(number1, Math.Min(number2, number3));
-        //    bool end = true;
-        //    while (nod > 1 || end == false)
-        //    {
-        //        if (number1 % nod == 0 && number2 % nod == 0 && number3 % nod == 0) end = false;
-        //        nod--;
-        //    }
-        //    return nod;
-        //}
-
-        public static int EuclidAlg(int[] array)
+        /// <summary>
+        /// Алгоритм Евклида(3 числа)
+        /// </summary>
+        /// <param name="number1">первое число</param>
+        /// <param name="number2">второе число</param>
+        /// <param name="number3">третье число</param>
+        /// <returns></returns>
+        public static int EuclidAlg(int number1, int number2, int number3)
         {
+            int[] array = { number1, number2, number3 };
+
+            int nod = EuclidAlg(array[0], array[1]);
+
+            for (int i = 2; i < array.Length; i++)
+                nod = EuclidAlg(nod, array[i]);
+
+            return nod;
+        }
+
+        /// <summary>
+        /// Алгоритм Евклида(4 числа)
+        /// </summary>
+        /// <param name="number1">первое число</param>
+        /// <param name="number2">второе число</param>
+        /// <param name="number3">третье число</param>
+        /// <param name="number4">четвертое число</param>
+        /// <returns></returns>
+        public static int EuclidAlg(int number1, int number2, int number3, int number4)
+        {
+            int[] array = { number1, number2, number3, number4 };
+
+            int nod = EuclidAlg(array[0], array[1]);
+
+            for (int i = 2; i < array.Length; i++)
+                nod = EuclidAlg(nod, array[i]);
+
+            return nod;
+        }
+
+        /// <summary>
+        /// Алгоритм Евклида(5 чисел)
+        /// </summary>
+        /// <param name="number1">первое число</param>
+        /// <param name="number2">второе число</param>
+        /// <param name="number3">третье число</param>
+        /// <param name="number4">четвертое число</param>
+        /// <param name="number5">пятое число</param>
+        /// <returns></returns>
+        public static int EuclidAlg(int number1, int number2, int number3, int number4, int number5)
+        {
+            int[] array = { number1, number2, number3, number4, number5 };
+
             int nod = EuclidAlg(array[0], array[1]);
 
             for (int i = 2; i < array.Length; i++)
@@ -64,8 +116,8 @@ namespace Task1
         /// <summary>
         /// Бинарный алгоритм Евклида
         /// </summary>
-        /// <param name="number1">первое число</param>
-        /// <param name="number2">второе число</param>
+        /// <param name="number1"></param>
+        /// <param name="number2"></param>
         /// <returns></returns>
         public static int BinaryEuclid(int number1, int number2)
         {
@@ -87,6 +139,57 @@ namespace Task1
             }
             else
             {
+                return number1 > number2
+                    ? BinaryEuclid((number1 - number2) >> 1, number2)
+                    : BinaryEuclid((number2 - number1) >> 1, number1);
+            }
+        }
+
+        /// <summary>
+        /// Бинарный алгоритм Евклида
+        /// </summary>
+        /// <param name="number1"></param>
+        /// <param name="number2"></param>
+        /// <param name="time">Время выполнения</param>
+        /// <returns></returns>
+        public static int BinaryEuclid(int number1, int number2, out double time)
+        {
+            Stopwatch swatch = new Stopwatch();
+
+            swatch.Start();
+
+            if (number1 == number2 || number1 == 0)
+            {
+                swatch.Stop();
+                time = swatch.Elapsed.TotalMilliseconds;
+                return number2;
+            }
+
+            if (number2 == 0)
+            {
+                swatch.Stop();
+                time = swatch.Elapsed.TotalMilliseconds;
+                return number1;
+            }
+
+            if ((number1 & 1) == 0)
+            {
+                swatch.Stop();
+                time = swatch.Elapsed.TotalMilliseconds;
+                return (number2 & 1) == 1
+                    ? BinaryEuclid(number1 >> 1, number2)
+                    : BinaryEuclid(number1 >> 1, number2 >> 1) << 1;
+            }
+            else if ((number2 & 1) == 0)
+            {
+                swatch.Stop();
+                time = swatch.Elapsed.TotalMilliseconds;
+                return BinaryEuclid(number1, number2 >> 1);
+            }
+            else
+            {
+                swatch.Stop();
+                time = swatch.Elapsed.TotalMilliseconds;
                 return number1 > number2
                     ? BinaryEuclid((number1 - number2) >> 1, number2)
                     : BinaryEuclid((number2 - number1) >> 1, number1);

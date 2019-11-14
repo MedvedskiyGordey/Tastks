@@ -15,7 +15,7 @@ namespace UnitTestBinary
 
 
         [TestMethod]
-        public void TestMethod1()
+        public void TestMethodBinary1()
         {
             int a = 322328;
             int b = 122120;
@@ -24,7 +24,7 @@ namespace UnitTestBinary
         }
 
         [TestMethod]
-        public void TestMethod2()
+        public void TestMethodBinary2()
         {
             int a = 300181;
             int b = 223744;
