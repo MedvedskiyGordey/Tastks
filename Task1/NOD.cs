@@ -195,5 +195,48 @@ namespace Task1
                     : BinaryEuclid((number2 - number1) >> 1, number1);
             }
         }
+
+        /// <summary>
+        /// Метод подготовки данных для гистограммы
+        /// </summary>
+        /// <param name="number1"></param>
+        /// <param name="number2"></param>
+        /// <param name="number3"></param>
+        /// <param name="number4"></param>
+        /// <param name="number5"></param>
+        /// <returns></returns>
+        public static Dictionary<string, double> Histogram(int number1, int number2, int number3, int number4, int number5)
+        {
+            Dictionary<string, double> methodsTime = new Dictionary<string, double>();
+
+            Stopwatch swatch = new Stopwatch();
+            double time;
+
+            EuclidAlg(number1, number2, out time);
+            methodsTime.Add("Euclidean algorithm(2 numbers)", time);
+
+            BinaryEuclid(number1, number2, out time);
+            methodsTime.Add("Stein's algorithm", time);
+
+            swatch.Start();
+            EuclidAlg(number1, number2, number3);
+            swatch.Stop();
+            time = swatch.Elapsed.TotalMilliseconds;
+            methodsTime.Add("Euclidean algorithm(3 numbers)", time);
+
+            swatch.Start();
+            EuclidAlg(number1, number2, number3, number4);
+            swatch.Stop();
+            time = swatch.Elapsed.TotalMilliseconds;
+            methodsTime.Add("Euclidean algorithm(4 numbers)", time);
+
+            swatch.Start();
+            EuclidAlg(number1, number2, number3, number4, number5);
+            swatch.Stop();
+            time = swatch.Elapsed.TotalMilliseconds;
+            methodsTime.Add("Euclidean algorithm(5 numbers)", time);
+
+            return methodsTime;
+        }
     }
 }
