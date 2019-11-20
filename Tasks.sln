@@ -13,6 +13,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Task_2", "Task_2", "{31BAB6
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task2", "Vect_Pol\Task2.csproj", "{89925A34-87A4-4F34-BF29-EF239DEC70B7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest_V_and_P", "UnitTest_V_and_P\UnitTest_V_and_P.csproj", "{87466324-458C-4390-BA8D-182B7161F799}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,10 @@ Global
 		{89925A34-87A4-4F34-BF29-EF239DEC70B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{89925A34-87A4-4F34-BF29-EF239DEC70B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{89925A34-87A4-4F34-BF29-EF239DEC70B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87466324-458C-4390-BA8D-182B7161F799}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87466324-458C-4390-BA8D-182B7161F799}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87466324-458C-4390-BA8D-182B7161F799}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87466324-458C-4390-BA8D-182B7161F799}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -39,6 +45,7 @@ Global
 		{CDCC4C71-7F18-404B-A58D-4340C794DF5F} = {6DD59600-C8D0-4810-BBB1-5BAFB88C123E}
 		{DC8ACAEC-6F0D-4776-AEE4-C005317D4604} = {6DD59600-C8D0-4810-BBB1-5BAFB88C123E}
 		{89925A34-87A4-4F34-BF29-EF239DEC70B7} = {31BAB62F-136F-45CB-A999-45D8761DCFE2}
+		{87466324-458C-4390-BA8D-182B7161F799} = {31BAB62F-136F-45CB-A999-45D8761DCFE2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D5B9F311-B6A3-4457-9EA7-B27C02449564}
