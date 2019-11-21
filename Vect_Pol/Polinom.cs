@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Vect_Pol
+namespace Task2
 {
     public class Polinom
     {
@@ -15,6 +15,12 @@ namespace Vect_Pol
             this.coeff = coeff;
         }
 
+        /// <summary>
+        /// Сложение многочленов
+        /// </summary>
+        /// <param name="p1"></param>
+        /// <param name="p2"></param>
+        /// <returns></returns>
         public static Polinom operator +(Polinom p1, Polinom p2)
         {
             int count = Math.Max(p1.coeff.Length, p2.coeff.Length);
@@ -36,6 +42,12 @@ namespace Vect_Pol
             return new Polinom(res);
         }
 
+        /// <summary>
+        /// Разность многочленов
+        /// </summary>
+        /// <param name="p1"></param>
+        /// <param name="p2"></param>
+        /// <returns></returns>
         public static Polinom operator -(Polinom p1, Polinom p2)
         {
             int count = Math.Max(p1.coeff.Length, p2.coeff.Length);
@@ -57,6 +69,12 @@ namespace Vect_Pol
             return new Polinom(res);
         }
 
+        /// <summary>
+        /// Умножение многочленов
+        /// </summary>
+        /// <param name="p1"></param>
+        /// <param name="p2"></param>
+        /// <returns></returns>
         public static Polinom operator *(Polinom p1, Polinom p2)
         {
             int count = p1.coeff.Length + p2.coeff.Length - 1;
@@ -69,6 +87,36 @@ namespace Vect_Pol
                 }
             }
             return new Polinom(res);
+        }
+
+        /// <summary>
+        /// Сравнение многочленов
+        /// </summary>
+        /// <param name="p1"></param>
+        /// <param name="p2"></param>
+        /// <returns>True если многочлены равны</returns>
+        public static bool operator ==(Polinom p1, Polinom p2)
+        {
+            if (p1.coeff.Length != p2.coeff.Length)
+                return false;
+
+            for (int i = 0; i < p1.coeff.Length; i++)
+            {
+                if (Math.Abs(p1.coeff[i] - p1.coeff[i]) > 0.001)
+                    return false;
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// Сравнение многочленов
+        /// </summary>
+        /// <param name="p1"></param>
+        /// <param name="p2"></param>
+        /// <returns>True если многочлены не равны</returns>
+        public static bool operator !=(Polinom p1, Polinom p2)
+        {
+            return !(p1 == p2);
         }
     }
 }
