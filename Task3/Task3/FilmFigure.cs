@@ -8,8 +8,5 @@ namespace Task3
 {
     interface FilmFigure : Ifigures
     {
-        Color GetColor();
-        void Paint(Color color);
-        bool Painted();
     }
 }

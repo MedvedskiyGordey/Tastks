@@ -12,8 +12,8 @@ namespace Task3
     }
     public interface Ifigures
     {
-        double Square { get; }
-        double Perimetr { get; }
+        double SquareFigure { get; }
+        double Perimeter { get; }
         string GetMaterial();
         string GetTypeFigure();
     }

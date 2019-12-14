@@ -42,10 +42,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FilmFigures\Circle.cs" />
+    <Compile Include="FilmFigures\Rectangle.cs" />
+    <Compile Include="FilmFigures\Square.cs" />
+    <Compile Include="FilmFigures\Triangle.cs" />
+    <Compile Include="PaperFigures\Circle.cs" />
+    <Compile Include="Exceptions.cs" />
     <Compile Include="Ifigures.cs" />
     <Compile Include="FilmFigure.cs" />
     <Compile Include="PaperFigure.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PaperFigures\Rectangle.cs" />
+    <Compile Include="PaperFigures\Square.cs" />
+    <Compile Include="PaperFigures\Triangle.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
