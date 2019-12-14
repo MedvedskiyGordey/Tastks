@@ -40,5 +40,53 @@ namespace Task3
             {
             }
         }
+
+        public class EmptyBoxException : Exception
+        {
+            public override string Message
+            {
+                get { return "Empty box."; }
+            }
+
+            public EmptyBoxException() : base()
+            {
+            }
+        }
+
+        public class ExistFigureException : Exception
+        {
+            public override string Message
+            {
+                get { return "The figure is already in the box."; }
+            }
+
+            public ExistFigureException() : base()
+            {
+            }
+        }
+
+        public class NoPlaceException : Exception
+        {
+            public override string Message
+            {
+                get { return "In the box, the maximum number of figures."; }
+            }
+
+            public NoPlaceException() : base()
+            {
+            }
+        }
+
+        /*public class NotFoundException : Exception
+        {
+            public override string Message
+            {
+                get { return "Figure not found."; }
+            }
+
+            public NotFoundException() : base()
+            {
+            }
+        }*/
     }
 }

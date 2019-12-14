@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static Task3.Exceptions;
 
-namespace Task3
+namespace Task3.PaperFigures
 {
     class Rectangle : PaperFigure
     {

@@ -42,6 +42,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BoxWithFigures.cs" />
+    <Compile Include="Factory.cs" />
     <Compile Include="FilmFigures\Circle.cs" />
     <Compile Include="FilmFigures\Rectangle.cs" />
     <Compile Include="FilmFigures\Square.cs" />
@@ -55,6 +57,8 @@
     <Compile Include="PaperFigures\Rectangle.cs" />
     <Compile Include="PaperFigures\Square.cs" />
     <Compile Include="PaperFigures\Triangle.cs" />
+    <Compile Include="Txt.cs" />
+    <Compile Include="Xml.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
