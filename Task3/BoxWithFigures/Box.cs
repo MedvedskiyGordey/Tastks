@@ -3,20 +3,29 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static Task3.Exceptions;
+using Interfaces;
+using static ExceptionsLibrary.Exceptions;
+using FilesWorker;
 
-namespace Task3
+namespace BoxWithFigures
 {
-    class BoxWithFigures
+    public class Box
     {
         private List<Ifigures> figures;
 
-        public BoxWithFigures()
+        /// <summary>
+        /// constructor
+        /// </summary>
+        public Box()
         {
             figures = new List<Ifigures>();
         }
 
-        public BoxWithFigures(List<Ifigures> figures)
+        /// <summary>
+        /// constructor
+        /// </summary>
+        /// <param name="figures"></param>
+        public Box(List<Ifigures> figures)
         {
             this.figures = new List<Ifigures>();
 
@@ -27,10 +36,14 @@ namespace Task3
 
             for (int i = 0; i < figures.Count; i++)
             {
-                figures.Add(figures[i]);
+                this.figures.Add(figures[i]);
             }
         }
 
+        /// <summary>
+        /// Add figure into box
+        /// </summary>
+        /// <param name="figure"></param>
         public void Add(Ifigures figure)
         {
             if (figures.Count == 20)
@@ -52,6 +65,11 @@ namespace Task3
             figures.Add(figure);
         }
 
+        /// <summary>
+        /// get figure from box
+        /// </summary>
+        /// <param name="num"></param>
+        /// <returns></returns>
         public Ifigures GetFigure(int num)
         {
             if (figures.Count == 0)
@@ -65,6 +83,10 @@ namespace Task3
             return figures[num - 1];
         }
 
+        /// <summary>
+        /// delete figure from box
+        /// </summary>
+        /// <param name="num"></param>
         public void DeleteFigure(int num)
         {
             if (figures.Count == 0)
@@ -78,6 +100,11 @@ namespace Task3
             figures.RemoveAt(num - 1);
         }
 
+        /// <summary>
+        /// replace figure
+        /// </summary>
+        /// <param name="num"></param>
+        /// <param name="figure"></param>
         public void ReplaceFigure(int num, Ifigures figure)
         {
             if (figures.Count == 0)
@@ -98,7 +125,12 @@ namespace Task3
             figures[num - 1] = figure;
         }
 
-        public string FindFigure(Ifigures figure)
+        /// <summary>
+        /// find figure in box
+        /// </summary>
+        /// <param name="figure"></param>
+        /// <returns></returns>
+        public int FindFigure(Ifigures figure)
         {
             string find = "";
 
@@ -111,18 +143,17 @@ namespace Task3
             {
                 if (figures[i].Equals(figure))
                 {
-                    find += i;
+                    return i;
                 }
             }
 
-            if (find == "")
-            {
-                find = "Figure not found";
-            }
-
-            return find;
+            return -555;
         }
 
+        /// <summary>
+        /// sum of squares of figures
+        /// </summary>
+        /// <returns></returns>
         public double SquareSum()
         {
             if (figures.Count == 0)
@@ -137,6 +168,10 @@ namespace Task3
             return squareSum;
         }
 
+        /// <summary>
+        /// sum of perimeters of figures
+        /// </summary>
+        /// <returns></returns>
         public double PerimeterSum()
         {
             if (figures.Count == 0)
@@ -151,6 +186,10 @@ namespace Task3
             return perimetrSum;
         }
 
+        /// <summary>
+        /// get all circles from box
+        /// </summary>
+        /// <returns></returns>
         public List<Ifigures> GetCircles()
         {
             if (figures.Count == 0)
@@ -168,6 +207,10 @@ namespace Task3
             return circles;
         }
 
+        /// <summary>
+        /// get all film figures from box
+        /// </summary>
+        /// <returns></returns>
         public List<Ifigures> GetFilmFigures()
         {
             if (figures.Count == 0)
@@ -185,11 +228,15 @@ namespace Task3
             return filmfigures;
         }
 
+        /// <summary>
+        /// get all paper figures from box
+        /// </summary>
+        /// <returns></returns>
         public List<Ifigures> GetPaperFigures()
         {
             if (figures.Count == 0)
             {
-                throw new EmptyBoxException();//пустая коробка
+                throw new EmptyBoxException();
             }
             List<Ifigures> paperfigures = new List<Ifigures>();
             for (int i = 0; i < figures.Count; i++)
@@ -200,6 +247,79 @@ namespace Task3
                 }
             }
             return paperfigures;
+        }
+
+        /// <summary>
+        /// write to file
+        /// </summary>
+        /// <param name="material"></param>
+        /// <param name="filePath"></param>
+        public void WriteToFile(string material, string filePath)
+        {
+            string fileFormat = filePath[filePath.Length - 3].ToString() + filePath[filePath.Length - 2].ToString() + filePath[filePath.Length - 1].ToString();
+            if (fileFormat != "txt" && fileFormat != "xml")
+            {
+                throw new InvalidParamException();
+            }
+
+            switch (material)
+            {
+                case "All":
+                    if (fileFormat == "txt") Txt.WriteToFile(figures, filePath);
+                    else Xml.WriteToXml(figures, filePath);
+                    break;
+                case "Paper":
+                    if (fileFormat == "txt") Txt.WriteToFile(GetPaperFigures(), filePath);
+                    else Xml.WriteToXml(GetPaperFigures(), filePath);
+                    break;
+                case "Film":
+                    if (fileFormat == "txt") Txt.WriteToFile(GetFilmFigures(), filePath);
+                    else Xml.WriteToXml(GetFilmFigures(), filePath);
+                    break;
+                default:
+                    throw new InvalidParamException();
+            }
+        }
+
+        /// <summary>
+        /// read from file
+        /// </summary>
+        /// <param name="filePath"></param>
+        public void ReadFromFile(string filePath)
+        {
+            string fileFormat = filePath[filePath.Length - 3].ToString() + filePath[filePath.Length - 2].ToString() + filePath[filePath.Length - 1].ToString();
+            switch (fileFormat)
+            {
+                case "txt":
+                    figures = Txt.ReadFromFile(filePath);
+                    break;
+                case "xml":
+                    figures = Xml.ReadFromXml(filePath);
+                    break;
+                default:
+                    throw new InvalidParamException();
+            }
+            if (figures.Count > 20)
+                throw new NoPlaceException();
+        }
+
+        /// <summary>
+        /// get cont figures in box
+        /// </summary>
+        /// <returns></returns>
+        public int GetCount()
+        {
+            return figures.Count;
+        }
+
+        public override string ToString()
+        {
+            string text = "";
+            for (int i = 0; i < figures.Count; i++)
+            {
+                text += (i + 1) + figures[i].ToString() + "\n";
+            }
+            return text;
         }
     }
 }

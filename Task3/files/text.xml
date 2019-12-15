@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<figures>
+  <figure type="Circle">
+    <material>Film</material>
+    <param>1</param>
+  </figure>
+  <figure type="Square">
+    <material>Paper</material>
+    <color>6</color>
+    <param>5</param>
+  </figure>
+  <figure type="Triangle">
+    <material>Film</material>
+    <param>1</param>
+    <param>3</param>
+    <param>9</param>
+  </figure>
+  <figure type="Rectangle">
+    <material>Paper</material>
+    <color>2</color>
+    <param>5</param>
+    <param>2</param>
+  </figure>
+</figures>

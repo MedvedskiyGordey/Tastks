@@ -4,9 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Task3
+namespace Interfaces
 {
-    interface FilmFigure : Ifigures
+    /// <summary>
+    /// Film figure interface
+    /// </summary>
+    public interface FilmFigure : Ifigures
     {
     }
 }

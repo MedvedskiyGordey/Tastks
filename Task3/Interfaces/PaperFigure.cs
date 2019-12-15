@@ -4,8 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Task3
+namespace Interfaces
 {
+    /// <summary>
+    /// Paper figure interface
+    /// </summary>
     public interface PaperFigure : Ifigures
     {
         Color GetColor();

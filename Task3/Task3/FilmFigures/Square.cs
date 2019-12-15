@@ -3,14 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static Task3.Exceptions;
+using Interfaces;
+using static ExceptionsLibrary.Exceptions;
 
-namespace Task3.FilmFigures
+namespace Figures.FilmFigures
 {
-    class Square : FilmFigure
+    /// <summary>
+    /// Square class
+    /// </summary>
+    public class Square : FilmFigure
     {
         private int side;
 
+        /// <summary>
+        /// Constructor for creating
+        /// </summary>
+        /// <param name="side"></param>
         public Square(int side)
         {
             if (side <= 0)
@@ -20,6 +28,11 @@ namespace Task3.FilmFigures
             this.side = side;
         }
 
+        /// <summary>
+        /// Constructor for cutting
+        /// </summary>
+        /// <param name="side"></param>
+        /// <param name="figure"></param>
         public Square(int side, Ifigures figure)
         {
             this.side = side;
@@ -45,11 +58,19 @@ namespace Task3.FilmFigures
             get { return 4 * side; }
         }
 
+        /// <summary>
+        /// return material figure
+        /// </summary>
+        /// <returns></returns>
         public string GetMaterial()
         {
             return "Film";
         }
 
+        /// <summary>
+        /// return material figure
+        /// </summary>
+        /// <returns></returns>
         public string GetTypeFigure()
         {
             return "Square";

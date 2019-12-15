@@ -3,20 +3,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static Task3.Exceptions;
-using Circle1 = Task3.PaperFigures.Circle;
-using Circle2 = Task3.FilmFigures.Circle;
-using Rectangle1 = Task3.PaperFigures.Rectangle;
-using Rectangle2 = Task3.FilmFigures.Rectangle;
-using Triangle1 = Task3.PaperFigures.Triangle;
-using Triangle2 = Task3.FilmFigures.Triangle;
-using Square1 = Task3.PaperFigures.Square;
-using Square2 = Task3.FilmFigures.Square;
+using Interfaces;
+using static ExceptionsLibrary.Exceptions;
+using Circle1 = Figures.PaperFigures.Circle;
+using Circle2 = Figures.FilmFigures.Circle;
+using Rectangle1 = Figures.PaperFigures.Rectangle;
+using Rectangle2 = Figures.FilmFigures.Rectangle;
+using Triangle1 = Figures.PaperFigures.Triangle;
+using Triangle2 = Figures.FilmFigures.Triangle;
+using Square1 = Figures.PaperFigures.Square;
+using Square2 = Figures.FilmFigures.Square;
 
-namespace Task3
+namespace Figures
 {
-    class Factory
+    /// <summary>
+    /// Factory method for figures
+    /// </summary>
+    public class Factory
     {
+        /// <summary>
+        /// return figure from paper
+        /// </summary>
+        /// <param name="figure"></param>
+        /// <param name="values"></param>
+        /// <returns></returns>
         public Ifigures CutPaperFigure(string figure, params int[] values)
         {
             Ifigures createdFigure = null;
@@ -40,6 +50,12 @@ namespace Task3
             return createdFigure;
         }
 
+        /// <summary>
+        /// return figure from film
+        /// </summary>
+        /// <param name="figure"></param>
+        /// <param name="values"></param>
+        /// <returns></returns>
         public Ifigures CutFilmFigure(string figure, params int[] values)
         {
 
@@ -64,6 +80,13 @@ namespace Task3
             return createdFigure;
         }
 
+        /// <summary>
+        /// return of a figure cut from another figure
+        /// </summary>
+        /// <param name="sourceFigure"></param>
+        /// <param name="cuttingFigure"></param>
+        /// <param name="values"></param>
+        /// <returns></returns>
         public Ifigures CutFigure(Ifigures sourceFigure, string cuttingFigure, params int[] values)
         {
             Ifigures createdFigure = null;

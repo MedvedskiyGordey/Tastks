@@ -3,14 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static Task3.Exceptions;
+using Interfaces;
+using static ExceptionsLibrary.Exceptions;
 
-namespace Task3.FilmFigures
+namespace Figures.FilmFigures
 {
-    class Rectangle : FilmFigure
+    /// <summary>
+    /// Rectangle class
+    /// </summary>
+    public class Rectangle : FilmFigure
     {
         private int[] sides;
 
+        /// <summary>
+        /// Constructor for creating
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
         public Rectangle(int a, int b)
         {
             if (a <= 0 || b <= 0)
@@ -21,6 +30,12 @@ namespace Task3.FilmFigures
 
         }
 
+        /// <summary>
+        /// Constructor for cutting
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <param name="figure"></param>
         public Rectangle(int a, int b, Ifigures figure)
         {
             sides = new int[2] { a, b };
@@ -48,11 +63,19 @@ namespace Task3.FilmFigures
             get { return 2 * (sides[0] + sides[1]); }
         }
 
+        /// <summary>
+        /// return material figure
+        /// </summary>
+        /// <returns></returns>
         public string GetMaterial()
         {
             return "Film";
         }
 
+        /// <summary>
+        /// return type figure
+        /// </summary>
+        /// <returns></returns>
         public string GetTypeFigure()
         {
             return "Rectangle";

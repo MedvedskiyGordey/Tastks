@@ -3,14 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static Task3.Exceptions;
+using Interfaces;
+using static ExceptionsLibrary.Exceptions;
 
-namespace Task3.FilmFigures
+namespace Figures.FilmFigures
 {
-    class Triangle : FilmFigure
+    /// <summary>
+    /// Triangle class
+    /// </summary>
+    public class Triangle : FilmFigure
     {
         private int[] sides;
 
+        /// <summary>
+        /// Constructor for creating
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <param name="c"></param>
         public Triangle(int a, int b, int c)
         {
             sides = new int[3] { a, b, c };
@@ -21,6 +31,13 @@ namespace Task3.FilmFigures
             }
         }
 
+        /// <summary>
+        /// Constructor for cutting
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <param name="c"></param>
+        /// <param name="figure"></param>
         public Triangle(int a, int b, int c, Ifigures figure)
         {
             sides = new int[3] { a, b, c };
@@ -46,11 +63,19 @@ namespace Task3.FilmFigures
             get { return sides[0] + sides[1] + sides[2]; }
         }
 
+        /// <summary>
+        /// return material figure
+        /// </summary>
+        /// <returns></returns>
         public string GetMaterial()
         {
             return "Film";
         }
 
+        /// <summary>
+        /// return type figure
+        /// </summary>
+        /// <returns></returns>
         public string GetTypeFigure()
         {
             return "Triangle";

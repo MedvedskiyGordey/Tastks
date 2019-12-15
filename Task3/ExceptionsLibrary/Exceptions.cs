@@ -4,9 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Task3
+namespace ExceptionsLibrary
 {
-    class Exceptions
+    /// <summary>
+    /// Exceptions class
+    /// </summary>
+    public class Exceptions
     {
         public class InvalidParamException : Exception
         {

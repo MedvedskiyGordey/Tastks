@@ -3,15 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static Task3.Exceptions;
+using Interfaces;
+using static ExceptionsLibrary.Exceptions;
 
-namespace Task3.PaperFigures
+namespace Figures.PaperFigures
 {
+    /// <summary>
+    /// Rectangle class
+    /// </summary>
     class Rectangle : PaperFigure
     {
         private int[] sides;
         Color colorIndex;
 
+        /// <summary>
+        /// Constructor for creating
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
         public Rectangle(int a, int b)
         {
             if (a <= 0 || b <= 0)
@@ -22,6 +31,12 @@ namespace Task3.PaperFigures
             colorIndex = 0;
         }
 
+        /// <summary>
+        /// Constructor for cutting
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <param name="figure"></param>
         public Rectangle(int a, int b, Ifigures figure)
         {
             sides = new int[2] { a, b };
@@ -50,26 +65,46 @@ namespace Task3.PaperFigures
             get { return 2 * (sides[0] + sides[1]); }
         }
 
+        /// <summary>
+        /// return color figure
+        /// </summary>
+        /// <returns></returns>
         public Color GetColor()
         {
             return colorIndex;
         }
 
+        /// <summary>
+        /// return material figure
+        /// </summary>
+        /// <returns></returns>
         public string GetMaterial()
         {
             return "Paper";
         }
 
+        /// <summary>
+        /// return type figure
+        /// </summary>
+        /// <returns></returns>
         public string GetTypeFigure()
         {
             return "Rectangle";
         }
 
+        /// <summary>
+        /// return is the figure painted
+        /// </summary>
+        /// <returns></returns>
         public bool Painted()
         {
             return (colorIndex != Color.None);
         }
 
+        /// <summary>
+        /// paint figure
+        /// </summary>
+        /// <param name="color"></param>
         public void Paint(Color color)
         {
             if (!Painted())
