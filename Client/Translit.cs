@@ -139,7 +139,7 @@ namespace Task4
                 gost.Add("«", "");
                 gost.Add("»", "");
                 gost.Add("—", "-");
-                gost.Add(" ", "-");
+                gost.Add(" ", " ");
 
                 iso.Add("Є", "YE");
                 iso.Add("І", "I");

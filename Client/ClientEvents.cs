@@ -7,7 +7,7 @@ using static Task4.Translit;
 
 namespace Task4
 {
-    public class ClientEvent
+    public class ClientEvents
     {
         public string MessageServer { get; private set; }
 
@@ -15,7 +15,7 @@ namespace Task4
 
         private Client Client { get; set; }
 
-        public ClientEvent(Client client)
+        public ClientEvents(Client client)
         {
             Client = client;
             EventHandler(client);

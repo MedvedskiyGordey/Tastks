@@ -7,6 +7,39 @@ using System.Threading.Tasks;
 
 namespace Task4
 {
+    public struct ClientMessage
+    {
+        public string ClientName { get; set; }
+
+        public string Message { get; set; }
+    }
+
+    public class ServerEvents
+    {
+        List<ClientMessage> clientMessages = new List<ClientMessage>();
+
+        private Server Server { get; set; }
+
+        private ClientProcessing ClientProcessing { get; set; }
+
+        public ServerEvents(Server server)
+        {
+            EventHandler(server);
+        }
+
+        private void EventHandler(Server server)
+        {
+            server.MessageClient += delegate (string message)
+            {
+                string[] words = message.Split(';');
+                ClientMessage clientMessage = new ClientMessage();
+                clientMessage.ClientName = words[0];
+                clientMessage.Message = words[1];
+                clientMessages.Add(clientMessage);
+            };
+        }
+    }
+
     public class ClientProcessing
     {
         public delegate void ClientConnection(string clientName);
@@ -54,7 +87,7 @@ namespace Task4
                 ResponseToClient(stream);
             }
 
-            ClientDisconnected.Invoke(clientName);
+            ClientDisconnected?.Invoke(clientName);
 
             status = false;
         }

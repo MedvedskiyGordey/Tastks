@@ -32,7 +32,7 @@ namespace Task4
 
             string responseData = Encoding.Unicode.GetString(receivedBytes, 0, bytes);
 
-            MessageServer.Invoke(responseData);
+            MessageServer?.Invoke(responseData);
         }
     }
 }
