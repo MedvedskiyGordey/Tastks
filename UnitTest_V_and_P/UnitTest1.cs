@@ -15,6 +15,7 @@ namespace UnitTest_V_and_P
             Vector sum = new Vector(13.2, 51, 58.2);
             Vector dif = new Vector(13.2, -20.2, -24.4);
             Vector Vec = new Vector(34.38, -545.16, 469.92);
+
             double Scalar = 1246.21;
             Assert.IsTrue((vector1 + vector2) == sum);
             Assert.IsTrue((vector1 - vector2) == dif);
