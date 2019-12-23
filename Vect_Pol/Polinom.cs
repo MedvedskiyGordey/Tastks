@@ -28,6 +28,7 @@ namespace Task2
             for (int i = 0; i < count; i++)
             {
                 double a = 0;
+
                 double b = 0;
                 if (i < p1.coeff.Length)
                 {

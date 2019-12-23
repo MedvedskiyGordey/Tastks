@@ -21,6 +21,7 @@ namespace UnitTest1
             int nod = 344;
             int ans = NOD.EuclidAlg(a, b);
 
+
             Assert.AreEqual(nod, ans);
         }
 

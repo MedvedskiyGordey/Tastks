@@ -23,6 +23,7 @@ namespace Task1
             {
                 if (number1 > number2)
                     number1 -= number2;
+
                 else
                     number2 -= number1;
             }
