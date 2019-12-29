@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BinaryTreeOfStudenta0nh1ZSI xmlns:i="http://www.w3.org/2001/XMLSchema-instance" z:Id="i1" xmlns:z="http://schemas.microsoft.com/2003/10/Serialization/" xmlns="http://schemas.datacontract.org/2004/07/Task5">
+  <NodeCount>6</NodeCount>
+  <RootNode z:Id="i2">
+    <BranchSide i:nil="true" />
+    <Data z:Id="i3">
+      <DateTest>2019-12-24T00:00:00</DateTest>
+      <Mark>1</Mark>
+      <Name>Oleg</Name>
+      <TestName>Math</TestName>
+    </Data>
+    <LeftBranch i:nil="true" />
+    <ParentBranch i:nil="true" />
+    <RightBranch z:Id="i4">
+      <BranchSide>Right</BranchSide>
+      <Data z:Id="i5">
+        <DateTest>2019-12-24T00:00:00</DateTest>
+        <Mark>2</Mark>
+        <Name>Michael</Name>
+        <TestName>English</TestName>
+      </Data>
+      <LeftBranch i:nil="true" />
+      <ParentBranch z:Ref="i2" />
+      <RightBranch z:Id="i6">
+        <BranchSide>Right</BranchSide>
+        <Data z:Id="i7">
+          <DateTest>2019-12-24T00:00:00</DateTest>
+          <Mark>3</Mark>
+          <Name>John</Name>
+          <TestName>Biology</TestName>
+        </Data>
+        <LeftBranch i:nil="true" />
+        <ParentBranch z:Ref="i4" />
+        <RightBranch z:Id="i8">
+          <BranchSide>Right</BranchSide>
+          <Data z:Id="i9">
+            <DateTest>2019-12-24T00:00:00</DateTest>
+            <Mark>4</Mark>
+            <Name>Vasiliy</Name>
+            <TestName>Math</TestName>
+          </Data>
+          <LeftBranch i:nil="true" />
+          <ParentBranch z:Ref="i6" />
+          <RightBranch z:Id="i10">
+            <BranchSide>Right</BranchSide>
+            <Data z:Id="i11">
+              <DateTest>2019-12-24T00:00:00</DateTest>
+              <Mark>5</Mark>
+              <Name>Vladislav</Name>
+              <TestName>English</TestName>
+            </Data>
+            <LeftBranch i:nil="true" />
+            <ParentBranch z:Ref="i8" />
+            <RightBranch z:Id="i12">
+              <BranchSide>Right</BranchSide>
+              <Data z:Id="i13">
+                <DateTest>2019-12-24T00:00:00</DateTest>
+                <Mark>6</Mark>
+                <Name>Valeriy</Name>
+                <TestName>Biology</TestName>
+              </Data>
+              <LeftBranch i:nil="true" />
+              <ParentBranch z:Ref="i10" />
+              <RightBranch i:nil="true" />
+            </RightBranch>
+          </RightBranch>
+        </RightBranch>
+      </RightBranch>
+    </RightBranch>
+  </RootNode>
+</BinaryTreeOfStudenta0nh1ZSI>
