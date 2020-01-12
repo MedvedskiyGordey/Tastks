@@ -1,66 +1,108 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<BinaryTreeOfStudenta0nh1ZSI xmlns:i="http://www.w3.org/2001/XMLSchema-instance" z:Id="i1" xmlns:z="http://schemas.microsoft.com/2003/10/Serialization/" xmlns="http://schemas.datacontract.org/2004/07/Task5">
+<BinaryTreeOfTestResultsa0nh1ZSI xmlns:i="http://www.w3.org/2001/XMLSchema-instance" z:Id="i1" xmlns:z="http://schemas.microsoft.com/2003/10/Serialization/" xmlns="http://schemas.datacontract.org/2004/07/Task5">
   <NodeCount>6</NodeCount>
   <RootNode z:Id="i2">
     <BranchSide i:nil="true" />
     <Data z:Id="i3">
-      <DateTest>2019-12-24T00:00:00</DateTest>
       <Mark>1</Mark>
-      <Name>Oleg</Name>
-      <TestName>Math</TestName>
+      <Student z:Id="i4">
+        <FirstName>Oleg</FirstName>
+        <SurName>Ivanov</SurName>
+        <Tests>
+          <TestResults z:Ref="i3" />
+        </Tests>
+      </Student>
+      <Test z:Id="i5">
+        <TestName>English</TestName>
+      </Test>
+      <TestDate>2019-12-24T00:00:00</TestDate>
     </Data>
     <LeftBranch i:nil="true" />
     <ParentBranch i:nil="true" />
-    <RightBranch z:Id="i4">
+    <RightBranch z:Id="i6">
       <BranchSide>Right</BranchSide>
-      <Data z:Id="i5">
-        <DateTest>2019-12-24T00:00:00</DateTest>
+      <Data z:Id="i7">
         <Mark>2</Mark>
-        <Name>Michael</Name>
-        <TestName>English</TestName>
+        <Student z:Id="i8">
+          <FirstName>Michael</FirstName>
+          <SurName>Loevskiy</SurName>
+          <Tests>
+            <TestResults z:Ref="i7" />
+          </Tests>
+        </Student>
+        <Test z:Id="i9">
+          <TestName>Biology</TestName>
+        </Test>
+        <TestDate>2019-12-24T00:00:00</TestDate>
       </Data>
       <LeftBranch i:nil="true" />
       <ParentBranch z:Ref="i2" />
-      <RightBranch z:Id="i6">
+      <RightBranch z:Id="i10">
         <BranchSide>Right</BranchSide>
-        <Data z:Id="i7">
-          <DateTest>2019-12-24T00:00:00</DateTest>
+        <Data z:Id="i11">
           <Mark>3</Mark>
-          <Name>John</Name>
-          <TestName>Biology</TestName>
+          <Student z:Id="i12">
+            <FirstName>John</FirstName>
+            <SurName>Petrov</SurName>
+            <Tests>
+              <TestResults z:Ref="i11" />
+            </Tests>
+          </Student>
+          <Test z:Id="i13">
+            <TestName>Math</TestName>
+          </Test>
+          <TestDate>2019-12-24T00:00:00</TestDate>
         </Data>
         <LeftBranch i:nil="true" />
-        <ParentBranch z:Ref="i4" />
-        <RightBranch z:Id="i8">
+        <ParentBranch z:Ref="i6" />
+        <RightBranch z:Id="i14">
           <BranchSide>Right</BranchSide>
-          <Data z:Id="i9">
-            <DateTest>2019-12-24T00:00:00</DateTest>
+          <Data z:Id="i15">
             <Mark>4</Mark>
-            <Name>Vasiliy</Name>
-            <TestName>Math</TestName>
+            <Student z:Id="i16">
+              <FirstName>Vasiliy</FirstName>
+              <SurName>Smith</SurName>
+              <Tests>
+                <TestResults z:Ref="i15" />
+              </Tests>
+            </Student>
+            <Test z:Ref="i5" />
+            <TestDate>2019-12-24T00:00:00</TestDate>
           </Data>
           <LeftBranch i:nil="true" />
-          <ParentBranch z:Ref="i6" />
-          <RightBranch z:Id="i10">
+          <ParentBranch z:Ref="i10" />
+          <RightBranch z:Id="i17">
             <BranchSide>Right</BranchSide>
-            <Data z:Id="i11">
-              <DateTest>2019-12-24T00:00:00</DateTest>
+            <Data z:Id="i18">
               <Mark>5</Mark>
-              <Name>Vladislav</Name>
-              <TestName>English</TestName>
+              <Student z:Id="i19">
+                <FirstName>Vladislav</FirstName>
+                <SurName>Reznov</SurName>
+                <Tests>
+                  <TestResults z:Ref="i18" />
+                </Tests>
+              </Student>
+              <Test z:Ref="i9" />
+              <TestDate>2019-12-24T00:00:00</TestDate>
             </Data>
             <LeftBranch i:nil="true" />
-            <ParentBranch z:Ref="i8" />
-            <RightBranch z:Id="i12">
+            <ParentBranch z:Ref="i14" />
+            <RightBranch z:Id="i20">
               <BranchSide>Right</BranchSide>
-              <Data z:Id="i13">
-                <DateTest>2019-12-24T00:00:00</DateTest>
+              <Data z:Id="i21">
                 <Mark>6</Mark>
-                <Name>Valeriy</Name>
-                <TestName>Biology</TestName>
+                <Student z:Id="i22">
+                  <FirstName>Valeriy</FirstName>
+                  <SurName>Vopros</SurName>
+                  <Tests>
+                    <TestResults z:Ref="i21" />
+                  </Tests>
+                </Student>
+                <Test z:Ref="i13" />
+                <TestDate>2019-12-24T00:00:00</TestDate>
               </Data>
               <LeftBranch i:nil="true" />
-              <ParentBranch z:Ref="i10" />
+              <ParentBranch z:Ref="i17" />
               <RightBranch i:nil="true" />
             </RightBranch>
           </RightBranch>
@@ -68,4 +110,4 @@
       </RightBranch>
     </RightBranch>
   </RootNode>
-</BinaryTreeOfStudenta0nh1ZSI>
+</BinaryTreeOfTestResultsa0nh1ZSI>

@@ -16,10 +16,39 @@ namespace UnitTest
         [TestMethod()]
         public void CreateStudent()
         {
+            Student student = new Student("Ivanov", "Oleg");
+            Assert.IsTrue(student.SurName == "Ivanov" && student.FirstName == "Oleg");
+        }
+
+        /// <summary>
+        /// Create test
+        /// </summary>
+        [TestMethod()]
+        public void CreateTest()
+        {
+            Test test = new Test("English");
+
+            Assert.IsTrue(test.TestName == "English");
+        }
+
+        /// <summary>
+        /// Create test results
+        /// </summary>
+        [TestMethod()]
+        public void CreateTestResults()
+        {
+            // Arrange
+            Student student = new Student("Ivanov", "Oleg");
+            Test test = new Test("Math");
             DateTime date = new DateTime(2019, 12, 24);
-            Student student = new Student("Oleg", "Math", 6, date);
-            Assert.IsTrue(student.Name == "Oleg" && student.TestName == "Math" && student.Mark == 6 &&
-                student.DateTest == date);
+            TestResults testResult = new TestResults(student, test, 9, date);
+            
+            int testMark = 9;
+            DateTime testDate = new DateTime(2019, 12, 24);
+
+            Assert.IsTrue(testResult.Student.SurName == student.SurName && testResult.Student.FirstName == student.FirstName &&
+                testResult.Test.TestName == test.TestName && testResult.Mark == testMark &&
+                testResult.TestDate == testDate);
         }
 
         /// <summary>
@@ -28,83 +57,54 @@ namespace UnitTest
         [TestMethod()]
         public void CreateNode()
         {
-            Node<Student> node = new Node<Student>();
+            Node<TestResults> node = new Node<TestResults>();
+            Student student = new Student("Ivanov", "Oleg");
+            Test test = new Test("Math");
             DateTime date = new DateTime(2019, 12, 24);
-            Student student = new Student("Oleg", "Math", 6, date);
-            node.Data = student;
-            Assert.IsTrue(student.Name == "Oleg" && student.TestName == "Math" && student.Mark == 6 &&
-                student.DateTest == date && node.Data.Mark == 6);
-        }
-
-        /// <summary>
-        /// Match parameters
-        /// </summary>
-        [TestMethod]
-        public void MatchParameters()
-        {
-            BinaryTree<Student> binaryTree = new BinaryTree<Student>();
-            DateTime date = new DateTime(2019, 12, 24);
-            Student student = new Student("Oleg", "Math", 6, date);
-            binaryTree.Add(student);
-            Node<Student> assertNode = binaryTree.Find(student);
-            Assert.AreEqual(assertNode.Data, student);
-        }
-
-        /// <summary>
-        /// Match parameters
-        /// </summary>
-        [TestMethod]
-        public void BalanceTree()
-        {
-            BinaryTree<int> binaryTree = new BinaryTree<int>();
-
-            binaryTree.Add(4);
-            binaryTree.Add(1);
-            binaryTree.Add(2);
-            binaryTree.Add(3);
-            binaryTree.Add(5);
-            binaryTree.Add(6);
-
-            binaryTree.BalanceTree();
-
-            var assertNode1 = binaryTree.Find(4);
-            var assertNode2 = binaryTree.Find(1);
-            var assertNode3 = binaryTree.Find(2);
-            var assertNode4 = binaryTree.Find(3);
-            var assertNode5 = binaryTree.Find(5);
-            var assertNode6 = binaryTree.Find(6);
-
-            Assert.IsTrue(assertNode1.ParentBranch == null &&
-                          assertNode1.LeftBranch == assertNode3 && assertNode1.RightBranch == assertNode6 &&
-                          assertNode3.LeftBranch == assertNode2 && assertNode3.RightBranch == assertNode4 &&
-                          assertNode6.LeftBranch == assertNode5 &&
-                          assertNode1.Data == 4 && assertNode2.Data == 1 &&
-                          assertNode3.Data == 2 && assertNode4.Data == 3 &&
-                          assertNode5.Data == 5 && assertNode6.Data == 6);
+            TestResults studentResult = new TestResults(student, test, 9, date);
+            node.Data = studentResult;
+            Assert.IsTrue(student.SurName == "Ivanov" && student.FirstName == "Oleg" && node.Data.Test == test &&
+                node.Data.TestDate == date && node.Data.Mark == 9);
         }
 
         [TestMethod()]
         public void Serialization()
         {
-            BinaryTree<Student> binaryTree = new BinaryTree<Student>();
+            BinaryTree<TestResults> binaryTree = new BinaryTree<TestResults>();
             DateTime date = new DateTime(2019, 12, 24);
-            Student student1 = new Student("Oleg", "Math", 1, date);
-            Student student2 = new Student("Michael", "English", 2, date);
-            Student student3 = new Student("John", "Biology", 3, date);
-            Student student4 = new Student("Vasiliy", "Math", 4, date);
-            Student student5 = new Student("Vladislav", "English", 5, date);
-            Student student6 = new Student("Valeriy", "Biology", 6, date);
+            Student student1 = new Student("Ivanov", "Oleg");
+            Student student2 = new Student("Loevskiy", "Michael");
+            Student student3 = new Student("Petrov", "John");
+            Student student4 = new Student("Smith", "Vasiliy");
+            Student student5 = new Student("Reznov", "Vladislav");
+            Student student6 = new Student("Vopros", "Valeriy");
+            Test test1 = new Test("English");
+            Test test2 = new Test("Biology");
+            Test test3 = new Test("Math");
 
-            binaryTree.Add(student1);
-            binaryTree.Add(student2);
-            binaryTree.Add(student3);
-            binaryTree.Add(student4);
-            binaryTree.Add(student5);
-            binaryTree.Add(student6);
+            TestResults testResults1 = new TestResults(student1, test1, 1, date);
+            TestResults testResults2 = new TestResults(student2, test2, 2, date);
+            TestResults testResults3 = new TestResults(student3, test3, 3, date);
+            TestResults testResults4 = new TestResults(student4, test1, 4, date);
+            TestResults testResults5 = new TestResults(student5, test2, 5, date);
+            TestResults testResults6 = new TestResults(student6, test3, 6, date);
+
+
+            TestResults.CompareFunc = (TestResults testOne, TestResults testTwo) =>
+            {
+                return testOne.Mark.CompareTo(testTwo.Mark);
+            };
+
+            binaryTree.Add(testResults1);
+            binaryTree.Add(testResults2);
+            binaryTree.Add(testResults3);
+            binaryTree.Add(testResults4);
+            binaryTree.Add(testResults5);
+            binaryTree.Add(testResults6);
 
             var settings = new XmlWriterSettings { Indent = true };
             var writer = XmlWriter.Create("..\\..\\..\\BinaryTree.xml", settings);
-            DataContractSerializer ser = new DataContractSerializer(typeof(BinaryTree<Student>));
+            DataContractSerializer ser = new DataContractSerializer(typeof(BinaryTree<TestResults>));
             ser.WriteObject(writer, binaryTree);
             writer.Close();
         }
@@ -113,36 +113,104 @@ namespace UnitTest
         public void Deserialization()
         {
             DateTime date = new DateTime(2019, 12, 24);
-            Student student1 = new Student("Oleg", "Math", 1, date);
-            Student student2 = new Student("Michael", "English", 2, date);
-            Student student3 = new Student("John", "Biology", 3, date);
-            Student student4 = new Student("Vasiliy", "Math", 4, date);
-            Student student5 = new Student("Vladislav", "English", 5, date);
-            Student student6 = new Student("Valeriy", "Biology", 6, date);
+            Student student1 = new Student("Ivanov", "Oleg");
+            Student student2 = new Student("Loevskiy", "Michael");
+            Student student3 = new Student("Petrov", "John");
+            Student student4 = new Student("Smith", "Vasiliy");
+            Student student5 = new Student("Reznov", "Vladislav");
+            Student student6 = new Student("Vopros", "Valeriy");
+            Test test1 = new Test("English");
+            Test test2 = new Test("Biology");
+            Test test3 = new Test("Math");
+
+            TestResults testResults1 = new TestResults(student1, test1, 1, date);
+            TestResults testResults2 = new TestResults(student1, test2, 2, date);
+            TestResults testResults3 = new TestResults(student1, test3, 3, date);
+            TestResults testResults4 = new TestResults(student1, test1, 4, date);
+            TestResults testResults5 = new TestResults(student1, test2, 5, date);
+            TestResults testResults6 = new TestResults(student1, test3, 6, date);
+
+            TestResults.CompareFunc = (TestResults testOne, TestResults testTwo) =>
+            {
+                return testOne.Mark.CompareTo(testTwo.Mark);
+            };
 
             FileStream fileStream = new FileStream("..\\..\\..\\BinaryTree.xml", FileMode.Open);
             XmlDictionaryReader reader = XmlDictionaryReader.CreateTextReader(fileStream, new XmlDictionaryReaderQuotas());
-            DataContractSerializer deserializer = new DataContractSerializer(typeof(BinaryTree<Student>));
-            BinaryTree<Student> deserializedTree = (BinaryTree<Student>)deserializer.ReadObject(reader, true);
+            DataContractSerializer deserializer = new DataContractSerializer(typeof(BinaryTree<TestResults>));
+            BinaryTree<TestResults> deserializedTree = (BinaryTree<TestResults>)deserializer.ReadObject(reader, true);
             reader.Close();
             fileStream.Close();
 
-            var assertNode1 = deserializedTree.Find(student1);
-            var assertNode2 = deserializedTree.Find(student2);
-            var assertNode3 = deserializedTree.Find(student3);
-            var assertNode4 = deserializedTree.Find(student4);
-            var assertNode5 = deserializedTree.Find(student5);
-            var assertNode6 = deserializedTree.Find(student6);
+            var testNode1 = deserializedTree.Find(testResults1);
+            var testNode2 = deserializedTree.Find(testResults2);
+            var testNode3 = deserializedTree.Find(testResults3);
+            var testNode4 = deserializedTree.Find(testResults4);
+            var testNode5 = deserializedTree.Find(testResults5);
+            var testNode6 = deserializedTree.Find(testResults6);
 
-            Assert.IsTrue(assertNode1.Data.Name == "Oleg" && assertNode2.Data.Name == "Michael" &&
-                          assertNode3.Data.Name == "John" && assertNode4.Data.Name == "Vasiliy" &&
-                          assertNode5.Data.Name == "Vladislav" && assertNode6.Data.Name == "Valeriy" &&
-                          assertNode1.Data.Mark == 1 && assertNode2.Data.Mark == 2 &&
-                          assertNode3.Data.Mark == 3 && assertNode4.Data.Mark == 4 &&
-                          assertNode5.Data.Mark == 5 && assertNode6.Data.Mark == 6 &&
-                          assertNode1.Data.TestName == "Math" && assertNode2.Data.TestName == "English" &&
-                          assertNode3.Data.TestName == "Biology" && assertNode4.Data.TestName == "Math" &&
-                          assertNode5.Data.TestName == "English" && assertNode6.Data.TestName == "Biology");
+            Assert.IsTrue(testNode1.Data.Student.SurName == "Ivanov" && 
+                          testNode2.Data.Student.SurName == "Loevskiy" &&
+                          testNode3.Data.Student.SurName == "Petrov" && 
+                          testNode4.Data.Student.SurName == "Smith" &&
+                          testNode5.Data.Student.SurName == "Reznov" && 
+                          testNode6.Data.Student.SurName == "Vopros");
+        }
+
+        /// <summary>
+        /// Tree balancing
+        /// </summary>
+        [TestMethod]
+        public void BalanceTree()
+        {
+            BinaryTree<TestResults> binaryTree = new BinaryTree<TestResults>();
+            DateTime date = new DateTime(2019, 12, 24);
+            Student student1 = new Student("Ivanov", "Oleg");
+            Student student2 = new Student("Loevskiy", "Michael");
+            Student student3 = new Student("Petrov", "John");
+            Student student4 = new Student("Smith", "Vasiliy");
+            Student student5 = new Student("Reznov", "Vladislav");
+            Student student6 = new Student("Vopros", "Valeriy");
+            Test test1 = new Test("English");
+            Test test2 = new Test("Biology");
+            Test test3 = new Test("Math");
+
+            TestResults testResults1 = new TestResults(student1, test1, 4, date);
+            TestResults testResults2 = new TestResults(student2, test2, 1, date);
+            TestResults testResults3 = new TestResults(student3, test3, 2, date);
+            TestResults testResults4 = new TestResults(student4, test1, 3, date);
+            TestResults testResults5 = new TestResults(student5, test2, 5, date);
+            TestResults testResults6 = new TestResults(student6, test3, 6, date);
+
+
+            TestResults.CompareFunc = (TestResults testOne, TestResults testTwo) =>
+            {
+                return testOne.Mark.CompareTo(testTwo.Mark);
+            };
+
+            binaryTree.Add(testResults1);
+            binaryTree.Add(testResults2);
+            binaryTree.Add(testResults3);
+            binaryTree.Add(testResults4);
+            binaryTree.Add(testResults5);
+            binaryTree.Add(testResults6);
+
+            binaryTree.BalanceTree();
+
+            var testNode1 = binaryTree.Find(testResults1);
+            var testNode2 = binaryTree.Find(testResults2);
+            var testNode3 = binaryTree.Find(testResults3);
+            var testNode4 = binaryTree.Find(testResults4);
+            var testNode5 = binaryTree.Find(testResults5);
+            var testNode6 = binaryTree.Find(testResults6);
+
+            Assert.IsTrue(testNode1.ParentBranch == null &&
+                          testNode1.LeftBranch == testNode3 && testNode1.RightBranch == testNode6 &&
+                          testNode3.LeftBranch == testNode2 && testNode3.RightBranch == testNode4 &&
+                          testNode6.LeftBranch == testNode5 &&
+                          testNode1.Data.Mark == 4 && testNode2.Data.Mark == 1 &&
+                          testNode3.Data.Mark == 2 && testNode4.Data.Mark == 3 &&
+                          testNode5.Data.Mark == 5 && testNode6.Data.Mark == 6);
         }
     }
 }

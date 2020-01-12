@@ -12,125 +12,80 @@ namespace Task5
     /// Student class
     /// </summary>
     [DataContract(IsReference = true)]
-    public class Student : IComparable
+    public class Student
     {
-        private string name;
+        private string surName;
 
-        private string testName;
+        private string firstName;
 
-        private double mark;
+        [DataMember]
+        public List<TestResults> Tests { get; private set; }
+
+
+        public Student(string surName, string firstName)
+        {
+            SurName = surName;
+            FirstName = firstName;
+            Tests = new List<TestResults>();
+        }
 
         /// <summary>
-        /// Student name
+        /// Student surname
         /// </summary>
         [DataMember]
-        public string Name
+        public string SurName
         {
             get
             {
-                return name;
+                return surName;
+            }
+            private set
+            {
+                if (value.Length < 1)
+                {
+                    throw new ArgumentException("The surname is entered incorrectly.");
+                }
+                else
+                {
+                    surName = value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Student firstname
+        /// </summary>
+        [DataMember]
+        public string FirstName
+        {
+            get
+            {
+                return firstName;
             }
             set
             {
                 if (value.Length < 1)
                 {
-                    throw new ArgumentException("The name is entered incorrectly.");
+                    throw new ArgumentException("The firstname is entered incorrectly.");
                 }
                 else
                 {
-                    name = value;
+                    firstName = value;
                 }
             }
-        }
-
-        /// <summary>
-        /// Test name
-        /// </summary>
-        [DataMember]
-        public string TestName
-        {
-            get
-            {
-                return testName;
-            }
-            set
-            {
-                if (value.Length < 1)
-                {
-                    throw new ArgumentException("The test name is entered incorrectly.");
-                }
-                else
-                {
-                    testName = value;
-                }
-            }
-        }
-
-        /// <summary>
-        /// Test date
-        /// </summary>
-        [DataMember]
-        public DateTime DateTest { get; set; }
-
-        /// <summary>
-        /// Test score
-        /// </summary>
-        [DataMember]
-        public double Mark
-        {
-            get
-            {
-                return mark;
-            }
-            set
-            {
-                if (value < 1 || value > 10)
-                {
-                    throw new ArgumentException("The value must be between 1 and 10.");
-                }
-                else
-                {
-                    mark = value;
-                }
-            }
-        }
-
-        public Student(string name, string testName, int mark, DateTime testDate)
-        {
-            Name = name;
-            TestName = testName;
-            Mark = mark;
-            DateTest = testDate;
-        }
-
-        /// <summary>
-        /// Student comparison
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
-        public virtual int CompareTo(object obj)
-        {
-            Student student = obj as Student;
-
-            if (student != null) return Mark.CompareTo(student.Mark);
-
-            else throw new Exception("Students cannot be compared.");
         }
 
         public override bool Equals(object obj)
         {
             return obj is Student student &&
-                   name == student.name &&
-                   testName == student.testName &&
-                   Name == student.Name &&
-                   mark == student.mark &&
-                   TestName == student.TestName &&
-                   DateTest == student.DateTest &&
-                   Mark == student.Mark;
+                   surName == student.surName &&
+                   firstName == student.firstName &&
+                   Tests == student.Tests;
         }
+
         public override int GetHashCode()
         {
-            int hashCode = Name.GetHashCode() * TestName.GetHashCode() * Mark.GetHashCode() * 564054;
+            int hashCode = surName.GetHashCode() * firstName.GetHashCode() * 564054;
 
             return hashCode;
         }
